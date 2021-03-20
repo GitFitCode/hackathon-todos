@@ -1,15 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { TodoUpdaterService } from '../todo-updater.service';
+import { Todo } from '../todo.interface';
 
 @Component({
   selector: 'grid-card',
   templateUrl: './grid-card.component.html',
   styleUrls: ['./grid-card.component.css']
 })
-export class GridCardComponent implements OnInit {
 
-  todos: Object[] = [];
+export class GridCardComponent implements OnInit, OnDestroy {
+
+  todos: Todo[] = [];
+  subjectToSubscribeToName: string;
+
+  subjectToSubscribeToNameSub: Subscription;
   
   @Input('urgent') isUrgent;
   @Input('important') isImportant;
@@ -17,23 +23,28 @@ export class GridCardComponent implements OnInit {
   constructor(private todoUpdaterService: TodoUpdaterService) { }
 
   ngOnInit(): void {
-    console.log(this.isImportant);
-
-    let subjectToSubscribeToName = "urgent";
-    if (this.isUrgent) {
-      if (this.isImportant) subjectToSubscribeToName = 'urgentImportant';
+    //Determine which subject in service to subscribe to based on input values
+    if (this.isUrgent && this.isImportant) {
+      this.subjectToSubscribeToName = 'urgentImportant';
+    }
+    else if (this.isUrgent) {
+      this.subjectToSubscribeToName = "urgent";
     }
     else if (this.isImportant) {
-      subjectToSubscribeToName = 'important'; 
+      this.subjectToSubscribeToName = 'important'; 
     }
     else {
-      subjectToSubscribeToName = 'neither'; 
+      this.subjectToSubscribeToName = 'neither'; 
     }
-    subjectToSubscribeToName = subjectToSubscribeToName + 'Subject';
-    this.todoUpdaterService[subjectToSubscribeToName].subscribe((newTodoArray) => {
+
+    // concactenate specific subject name with 'Subject'
+    this.subjectToSubscribeToName += 'Subject';
+    this.subjectToSubscribeToNameSub = this.todoUpdaterService[this.subjectToSubscribeToName].subscribe((newTodoArray: Todo[]) => {
       this.todos = newTodoArray;
-      console.log(this.todos);
     });
   }
 
+  ngOnDestroy() {
+    if (this.subjectToSubscribeToNameSub) this.todoUpdaterService[this.subjectToSubscribeToName].unsubscribe();
+  }
 }

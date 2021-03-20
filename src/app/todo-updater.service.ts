@@ -2,52 +2,43 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import mockData from './todo-mock-data';
+import { Todo } from './todo.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class TodoUpdaterService {
-  //one array for each card
-  private urgent: Object[] = [];
-  private urgentImportant: Object[] = [];
-  private important: Object[] = [];
-  private neither: Object[] = [];
+  //the filtered arrays of todos for each card
+  private urgent: Todo[] = [];
+  private urgentImportant: Todo[] = [];
+  private important: Todo[] = [];
+  private neither: Todo[] = [];
 
-  //Array Subjects to emit changes
-  urgentSubject = new BehaviorSubject([]);
-  urgentImportantSubject = new BehaviorSubject([]);
-  importantSubject = new BehaviorSubject([]);
-  neitherSubject = new BehaviorSubject([]);
+  //Array Subjects to emit changes to filtered todo arrays
+  //When you first subscribe they pass an empty array
+  urgentSubject = new BehaviorSubject<Todo[]>([]); 
+  urgentImportantSubject = new BehaviorSubject<Todo[]>([]);
+  importantSubject = new BehaviorSubject<Todo[]>([]);
+  neitherSubject = new BehaviorSubject<Todo[]>([]);
 
+  //grab todos (currently from mockData) and then distribute to cards
   constructor () {
-    this.run();
     this.filterTodoDataToCardArrays();
     this.emitNewTodoArrays();
-
-    console.log(this.urgent);
-    console.log(this.urgentImportant);
-    console.log(this.important);
-    console.log(this.neither);
   }
 
-  private run() {
-    console.log(mockData[3]);
-  }
-
+  //go through mockData array and filter todos to separate arrays
   private filterTodoDataToCardArrays() {
-    //go through mockData array and filter todos to separate arrays
-    mockData.forEach(todo => {
-      if (todo.urgent) {
-        if (todo.important) {
-          //{...todo} creates a new object vs just a reference 
-          this.urgentImportant.push({...todo});
-        }
-        else {
-          this.urgent.push({...todo});
-        }
+    mockData.forEach((todo: Todo) => {
+      if (todo.isUrgent && todo.isImportant)  {
+        //{...todo} creates a new object vs just a reference 
+        this.urgentImportant.push({...todo});
       }
-      else if (todo.important) {
+      else if (todo.isUrgent) {
+        this.urgent.push({...todo});
+      }
+      else if (todo.isImportant) {
         this.important.push({...todo});
       }
       else {

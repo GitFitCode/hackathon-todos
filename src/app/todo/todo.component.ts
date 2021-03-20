@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { Todo } from '../todo.interface';
+
 @Component({
   selector: 'todo',
   templateUrl: './todo.component.html',
@@ -7,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  @Input('todo') todo: any;
+  @Input('todo') todo: Todo;
 
   constructor() { }
 

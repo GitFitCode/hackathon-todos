@@ -1,1 +1,4 @@
-<li>{{ todo.name }}</li>
+<li>
+  <input type="checkbox" [checked]="todo.isCompleted">
+  {{ todo.name }}
+</li>

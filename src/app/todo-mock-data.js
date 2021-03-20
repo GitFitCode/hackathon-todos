@@ -3,13 +3,13 @@
  *
  * From Design Doc:
  * - Required
- *     - Name - Require
+ *     - Name
  * - Optional
  *     - isUrgent
  *     - isImportant
+ *     - isCompleted
  *     - [2] due date
  *     - [2] task description
- *     - isCompleted
  */
 
 
@@ -19,63 +19,63 @@
 const mockData = [
   {
     "name": "Complete mock data creation",
-    "urgent": true,
-    "important": true,
-    "completed": false
+    "isUrgent": true,
+    "isImportant": true,
+    "isCompleted": false
   },
   {
     "name": "History Homework Ch. 12",
-    "urgent": false,
-    "important": true,
-    "completed": false
+    "isUrgent": false,
+    "isImportant": true,
+    "isCompleted": false
   },
   {
     "name": "fill out study planner",
-    "urgent": true,
-    "important": false,
-    "completed": true
+    "isUrgent": true,
+    "isImportant": false,
+    "isCompleted": true
   },
   {
     "name": "talk to Erica at lunch for robotics",
-    "urgent": false,
-    "important": false,
-    "completed": false
+    "isUrgent": false,
+    "isImportant": false,
+    "isCompleted": false
   },
   {
     "name": "English essay on ATOTC",
-    "urgent": false,
-    "important": true,
-    "completed": false
+    "isUrgent": false,
+    "isImportant": true,
+    "isCompleted": false
   },
   {
     "name": "proofread and edit essay",
-    "urgent": false,
-    "important": true,
-    "completed": false
+    "isUrgent": false,
+    "isImportant": true,
+    "isCompleted": false
   },
   {
     "name": "AP Chemistry insulating material scavenge",
-    "urgent": false,
-    "important": false,
-    "completed": true
+    "isUrgent": false,
+    "isImportant": false,
+    "isCompleted": true
   },
   {
     "name": "Study potential vs kinetic energy",
-    "urgent": false,
-    "important": false,
-    "completed": false
+    "isUrgent": false,
+    "isImportant": false,
+    "isCompleted": false
   },
   {
     "name": "complete linked list coding assignment",
-    "urgent": true,
-    "important": false,
-    "completed": false
+    "isUrgent": true,
+    "isImportant": false,
+    "isCompleted": false
   },
   {
     "name": "Study for Friday quiz",
-    "urgent": false,
-    "important": true,
-    "completed": false
+    "isUrgent": false,
+    "isImportant": true,
+    "isCompleted": false
   },
 ];
 
