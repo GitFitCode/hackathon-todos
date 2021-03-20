@@ -1,3 +1,19 @@
 section {
-  display: flex;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
 }
+
+grid-card {
+ height: 100%;
+ border: 1px solid #333333;
+ padding: 1%;
+ background-color: whitesmoke;
+ box-sizing: border-box;
+}
+
