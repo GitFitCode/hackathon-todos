@@ -1,3 +1,7 @@
 <div class="grid-card">
-  <todo *ngFor="let todo of todos" [todo]="todo"></todo>
+  <todo 
+    *ngFor="let todo of todos; let todoId = index;" 
+    [todo]="todo" 
+    (todoUpdated)="todoUpdated($event, todoId)">
+  </todo>
 </div>

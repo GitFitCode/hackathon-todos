@@ -37,11 +37,22 @@ export class GridCardComponent implements OnInit, OnDestroy {
       this.subjectToSubscribeToName = 'neither'; 
     }
 
-    // concactenate specific subject name with 'Subject'
+    // concatenate specific subject name with 'Subject'
     this.subjectToSubscribeToName += 'Subject';
     this.subjectToSubscribeToNameSub = this.todoUpdaterService[this.subjectToSubscribeToName].subscribe((newTodoArray: Todo[]) => {
       this.todos = newTodoArray;
     });
+  }
+
+  //called when a todo is changed and saved. 
+  //calls service and passes in todo index and current grid-card values for urgent and important
+  todoUpdated(newTodoData: Todo, todoId: number) {
+    this.todoUpdaterService.todoUpdated(
+      newTodoData,
+      todoId,
+      this.isUrgent,
+      this.isImportant
+    );
   }
 
   ngOnDestroy() {

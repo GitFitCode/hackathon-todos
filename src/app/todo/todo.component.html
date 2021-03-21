@@ -1,4 +1,15 @@
-<li>
-  <input type="checkbox" [checked]="todo.isCompleted">
-  {{ todo.name }}
+<li [formGroup]="todoForm">
+  <input formControlName="isCompleted" type="checkbox" [checked]="todo.isCompleted">
+  <input formControlName="name" type="text">
+  <input formControlName="isUrgent" type="checkbox" [checked]="todo.isUrgent">  <!-- (change)="onUrgentChange()" -->
+  <input formControlName="isImportant" type="checkbox" [checked]="todo.isImportant">
+
+  <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
+  <button 
+    *ngIf="todoForm.dirty" 
+    class="button-save" 
+    type="submit" 
+    (click)="onTodoUpdateSave()">
+    Save
+  </button>
 </li>
