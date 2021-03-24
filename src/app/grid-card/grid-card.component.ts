@@ -14,6 +14,7 @@ export class GridCardComponent implements OnInit, OnDestroy {
 
   todos: Todo[] = [];
   subjectToSubscribeToName: string;
+  iconPath: string;
 
   subjectToSubscribeToNameSub: Subscription;
   
@@ -24,6 +25,20 @@ export class GridCardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //Determine which subject in service to subscribe to based on input values
+    this.generateCardNameFromInputs();
+    
+    //set path name for card-specific icon
+    this.iconPath = `../../assets/icon-full-${this.subjectToSubscribeToName}.png`;
+
+    // concatenate specific subject name with 'Subject'
+    this.subjectToSubscribeToName += 'Subject';
+    this.subjectToSubscribeToNameSub = this.todoUpdaterService[this.subjectToSubscribeToName].subscribe((newTodoArray: Todo[]) => {
+      this.todos = newTodoArray;
+    });
+  }
+
+  //builds the card-specific string for use in img paths and service actions
+  generateCardNameFromInputs() {
     if (this.isUrgent && this.isImportant) {
       this.subjectToSubscribeToName = 'urgentImportant';
     }
@@ -36,12 +51,6 @@ export class GridCardComponent implements OnInit, OnDestroy {
     else {
       this.subjectToSubscribeToName = 'neither'; 
     }
-
-    // concatenate specific subject name with 'Subject'
-    this.subjectToSubscribeToName += 'Subject';
-    this.subjectToSubscribeToNameSub = this.todoUpdaterService[this.subjectToSubscribeToName].subscribe((newTodoArray: Todo[]) => {
-      this.todos = newTodoArray;
-    });
   }
 
   //called when a todo is changed and saved. 

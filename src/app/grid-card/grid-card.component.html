@@ -1,4 +1,5 @@
 <div class="grid-card">
+  <img [src]="iconPath">
   <todo 
     *ngFor="let todo of todos; let todoId = index;" 
     [todo]="todo" 
