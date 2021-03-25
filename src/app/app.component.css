@@ -6,4 +6,5 @@ article {
 grid-view {
   width: 1000px;
   height: 500px;
+  margin: 100px auto;
 }

@@ -5,25 +5,72 @@
  */
 :host {
   display: block;
+  position: relative;
 }
 
 section {
   width: 100%;
   height: 100%;
-  padding: 10px;
+  min-height: 0;
+  min-width: 0;
+  padding: 3%;
   box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 10px;
+  column-gap: 15px;
+  row-gap: 15px;
 }
 
-/* This should be moved to grid-card component as :host */
-grid-card {
- height: 100%;
- border: 1px solid #333333;
- padding: 1%;
- background-color: whitesmoke;
- box-sizing: border-box;
+/* Title Tabs */
+.title-tab {
+  box-sizing: border-box;
+  border-radius: 30px;
+  position: absolute;
+  z-index: -10;
+  
+  border: 1px solid blue;
+}
+.vertical-tab {
+  width: 40% !important;
+  height: 100% !important;
+  top: 0%;
+}
+.horizontal-tab {
+  width: 100%;
+  height: 40%;
+  left: 0%;
+}
+.vertical-tab div {
+  color: red;
+  text-align: center;
+}
+.horizontal-tab div {
+  color: black;
+  transform: rotate(-90deg);
+  position: absolute;
+  left: -25px;
+  top: 50%;
+}
+
+.urgent {
+  left: 5%;
+  background-color: rgba(0, 128, 128, .8);
+}
+.not-urgent {
+  right: 5%;
+  background-color: rgba(0, 128, 128, .6);
+}
+.important {
+  top: 7%;
+  background-color: rgba(127, 255, 212, .8);
+}
+.not-important {
+  bottom: 7%;
+  background-color: rgba(127, 255, 212, .6);
 }

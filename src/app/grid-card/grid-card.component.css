@@ -1,3 +1,9 @@
-.grid-card {
+:host {
   height: 100%;
+  min-width: 0;
+  overflow: scroll;
+  border: 1px solid #333333;
+  padding: 1%;
+  background-color: whitesmoke;
+  box-sizing: border-box;
 }
