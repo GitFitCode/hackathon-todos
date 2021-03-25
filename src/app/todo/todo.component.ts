@@ -10,6 +10,7 @@ import { Todo } from '../todo.interface';
 })
 export class TodoComponent implements OnInit {
   todoForm: FormGroup;
+  displayExpandedFields: boolean = false; 
 
   @Input('todo') todo: Todo;
   @Output('todoUpdated') todoUpdated: EventEmitter<Todo> = new EventEmitter();
@@ -33,5 +34,9 @@ export class TodoComponent implements OnInit {
     
     //set form back to pristine to remove "save" button
     this.todoForm.markAsPristine();
+  }
+
+  toggleDisplayExpanded() {
+    this.displayExpandedFields = !this.displayExpandedFields;
   }
 }

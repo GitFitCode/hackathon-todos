@@ -1,0 +1,17 @@
+.todo {
+  margin: 5px;
+  border: 1px solid seagreen;
+  border-radius: 15px;
+  background-color: darkblue;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-always-visible {
+  display: flex;
+  justify-content: space-around;
+}
+.todo-expandable {
+  display: flex;
+  justify-content: space-around;
+}

@@ -1,19 +1,26 @@
-<li [formGroup]="todoForm">
-  <input formControlName="isCompleted" type="checkbox" [checked]="todo.isCompleted">
-  <input formControlName="name" type="text">
-  <input formControlName="isUrgent" type="checkbox" [checked]="todo.isUrgent">  <!-- (change)="onUrgentChange()" -->
-  <input formControlName="isImportant" type="checkbox" [checked]="todo.isImportant">
-  
-  <!-- Expand buttons -->
-  <img src="../../assets/expand-more.png">
-  <img src="../../assets/expand-less.png">
-
-  <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
-  <button 
-    *ngIf="todoForm.dirty" 
-    class="button-save" 
-    type="submit" 
-    (click)="onTodoUpdateSave()">
-    Save
-  </button>
+<li [formGroup]="todoForm" class="todo">
+  <!-- Always Visible Section -->
+  <div class="todo-always-visible">
+    <input formControlName="isCompleted" type="checkbox" [checked]="todo.isCompleted">
+    <input formControlName="name" type="text">
+    
+    <!-- Expand buttons -->
+    <img *ngIf="!displayExpandedFields" (click)="toggleDisplayExpanded()" src="../../assets/expand-more.png">
+    <img *ngIf="displayExpandedFields" (click)="toggleDisplayExpanded()" src="../../assets/expand-less.png">
+  </div>
+    
+  <!-- Expanded Section -->
+  <div *ngIf="displayExpandedFields || todoForm.dirty" class="todo-expandable">
+    <input formControlName="isUrgent" type="checkbox" [checked]="todo.isUrgent">  <!-- (change)="onUrgentChange()" -->
+    <input formControlName="isImportant" type="checkbox" [checked]="todo.isImportant">
+    
+    <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
+    <button 
+      *ngIf="todoForm.dirty" 
+      class="button-save" 
+      type="submit" 
+      (click)="onTodoUpdateSave()">
+      Save
+    </button>
+  </div>
 </li>
