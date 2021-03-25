@@ -48,8 +48,8 @@ export class TodoUpdaterService {
   }
 
   private emitNewTodoArrays() {
-    this.urgentSubject.next(this.urgent);
     this.urgentImportantSubject.next(this.urgentImportant);
+    this.urgentSubject.next(this.urgent);
     this.importantSubject.next(this.important);
     this.neitherSubject.next(this.neither);
   }

@@ -3,6 +3,8 @@
   <todo 
     *ngFor="let todo of todos; let todoId = index;" 
     [todo]="todo" 
+    [todoIndex]="todoId"
+    [cardName]="cardName"
     (todoUpdated)="todoUpdated($event, todoId)">
   </todo>
 </div>

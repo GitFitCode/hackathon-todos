@@ -13,7 +13,8 @@ import { Todo } from '../todo.interface';
 export class GridCardComponent implements OnInit, OnDestroy {
 
   todos: Todo[] = [];
-  subjectToSubscribeToName: string;
+  cardName: string;  //example: urgentImportant
+  subjectToSubscribeToName: string;  //is cardName + 'Subject'
   iconPath: string;
 
   subjectToSubscribeToNameSub: Subscription;
@@ -25,31 +26,31 @@ export class GridCardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //Determine which subject in service to subscribe to based on input values
-    this.generateCardNameFromInputs();
+    this.cardName = this.generateCardNameFromInputs();
     
     //set path name for card-specific icon
-    this.iconPath = `../../assets/icon-full-${this.subjectToSubscribeToName}.png`;
+    this.iconPath = `../../assets/icon-full-${this.cardName}.png`;
 
     // concatenate specific subject name with 'Subject'
-    this.subjectToSubscribeToName += 'Subject';
+    this.subjectToSubscribeToName = this.cardName + 'Subject';
     this.subjectToSubscribeToNameSub = this.todoUpdaterService[this.subjectToSubscribeToName].subscribe((newTodoArray: Todo[]) => {
       this.todos = newTodoArray;
     });
   }
 
   //builds the card-specific string for use in img paths and service actions
-  generateCardNameFromInputs() {
+  generateCardNameFromInputs(): string {
     if (this.isUrgent && this.isImportant) {
-      this.subjectToSubscribeToName = 'urgentImportant';
+      return 'urgentImportant';
     }
     else if (this.isUrgent) {
-      this.subjectToSubscribeToName = "urgent";
+      return "urgent";
     }
     else if (this.isImportant) {
-      this.subjectToSubscribeToName = 'important'; 
+      return'important'; 
     }
     else {
-      this.subjectToSubscribeToName = 'neither'; 
+      return'neither'; 
     }
   }
 

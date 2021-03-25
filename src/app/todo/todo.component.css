@@ -10,8 +10,23 @@
 .todo-always-visible {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .todo-expandable {
   display: flex;
   justify-content: space-around;
+}
+
+.input-completed {
+  border: none;
+  background-color: #597AC8;
+
+}
+.input-name {
+  height: 34px;
+  margin: 0px 4px;
+  border-radius: 10px;
+  border: 1px #8EABF3 solid;
+  background-color: #597AC8;
+  flex-grow: 1;
 }

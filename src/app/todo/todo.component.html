@@ -1,8 +1,12 @@
 <li [formGroup]="todoForm" class="todo">
   <!-- Always Visible Section -->
   <div class="todo-always-visible">
-    <input formControlName="isCompleted" type="checkbox" [checked]="todo.isCompleted">
-    <input formControlName="name" type="text">
+    <input 
+      formControlName="isCompleted" 
+      class="input-completed"
+      type="checkbox" 
+      [checked]="todo.isCompleted">
+    <input formControlName="name" class="input-name" type="text">
     
     <!-- Expand buttons -->
     <img *ngIf="!displayExpandedFields" (click)="toggleDisplayExpanded()" src="../../assets/expand-more.png">
@@ -11,9 +15,44 @@
     
   <!-- Expanded Section -->
   <div *ngIf="displayExpandedFields || todoForm.dirty" class="todo-expandable">
-    <input formControlName="isUrgent" type="checkbox" [checked]="todo.isUrgent">  <!-- (change)="onUrgentChange()" -->
-    <input formControlName="isImportant" type="checkbox" [checked]="todo.isImportant">
-    
+    <!-- Description Text Field-->
+
+    <!-- Urgent Radio Group -->
+    <div>
+      <input 
+        type="radio" 
+        [name]="uniqueRadioButtonNameUrgent" 
+        [formControlName]="uniqueRadioButtonNameUrgent"
+        [id]="uniqueRadioButtonNameUrgent + 'True'" 
+        value="true">
+      <label [for]="uniqueRadioButtonNameUrgent + 'True'">Urgent</label>
+      <input 
+        type="radio" 
+        [name]="uniqueRadioButtonNameUrgent" 
+        [formControlName]="uniqueRadioButtonNameUrgent" 
+        [id]="uniqueRadioButtonNameUrgent + 'False'" 
+        value="false">
+      <label [for]="uniqueRadioButtonNameUrgent + 'False'">Not Urgent</label>
+    </div>
+
+    <!-- Important Radio Group -->
+    <div>
+      <input 
+        type="radio" 
+        [name]="uniqueRadioButtonNameImportant" 
+        [formControlName]="uniqueRadioButtonNameImportant" 
+        [id]="uniqueRadioButtonNameImportant + 'True'" 
+        value="true">
+      <label [for]="uniqueRadioButtonNameImportant + 'True'">Important</label>
+      <input 
+        type="radio" 
+        [name]="uniqueRadioButtonNameImportant" 
+        [formControlName]="uniqueRadioButtonNameImportant" 
+        [id]="uniqueRadioButtonNameImportant + 'False'" 
+        value="false">
+      <label [for]="uniqueRadioButtonNameImportant + 'False'">Not Important</label>
+    </div>
+
     <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
     <button 
       *ngIf="todoForm.dirty" 
