@@ -21,13 +21,15 @@ const mockData = [
     "name": "Complete mock data creation",
     "isUrgent": true,
     "isImportant": true,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": "Almost all done, asymptotically"
   },
   {
     "name": "History Homework Ch. 12",
     "isUrgent": false,
     "isImportant": true,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": "Review WWI and Franz Ferdinand's vehicle's make and model."
   },
   {
     "name": "fill out study planner",

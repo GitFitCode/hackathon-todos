@@ -3,7 +3,7 @@
   <div class="todo-always-visible">
     <input 
       formControlName="isCompleted" 
-      class="input-completed"
+      class="input-completed-checkbox"
       type="checkbox" 
       [checked]="todo.isCompleted">
     <input formControlName="name" class="input-name" type="text">
@@ -14,52 +14,75 @@
   </div>
     
   <!-- Expanded Section -->
-  <div *ngIf="displayExpandedFields || todoForm.dirty" class="todo-expandable">
+  <div *ngIf="displayExpandedFields || checkToDisplayIfChanges()" class="todo-expandable">
     <!-- Description Text Field-->
+    <textarea 
+      formControlName="description"
+      rows="4"
+      cols="15">
+    </textarea>
 
-    <!-- Urgent Radio Group -->
-    <div>
-      <input 
-        type="radio" 
-        [name]="uniqueRadioButtonNameUrgent" 
-        [formControlName]="uniqueRadioButtonNameUrgent"
-        [id]="uniqueRadioButtonNameUrgent + 'True'" 
-        value="true">
-      <label [for]="uniqueRadioButtonNameUrgent + 'True'">Urgent</label>
-      <input 
-        type="radio" 
-        [name]="uniqueRadioButtonNameUrgent" 
-        [formControlName]="uniqueRadioButtonNameUrgent" 
-        [id]="uniqueRadioButtonNameUrgent + 'False'" 
-        value="false">
-      <label [for]="uniqueRadioButtonNameUrgent + 'False'">Not Urgent</label>
+    <div class="radio-container-all">
+      <!-- Urgent Radio Group -->
+      <div class="radio-container">
+        <label [for]="uniqueRadioButtonNameUrgent + 'True'">
+          <input 
+            type="radio" 
+            [name]="uniqueRadioButtonNameUrgent" 
+            [formControlName]="uniqueRadioButtonNameUrgent"
+            [id]="uniqueRadioButtonNameUrgent + 'True'" 
+            value="true">
+            Urgent
+        </label>
+        <label [for]="uniqueRadioButtonNameUrgent + 'False'">
+          <input 
+            type="radio" 
+            [name]="uniqueRadioButtonNameUrgent" 
+            [formControlName]="uniqueRadioButtonNameUrgent" 
+            [id]="uniqueRadioButtonNameUrgent + 'False'" 
+            value="false">
+          Not Urgent
+        </label>
+      </div>
+      <!-- Important Radio Group -->
+      <div class="radio-container">
+        <label [for]="uniqueRadioButtonNameImportant + 'True'">
+          <input 
+            type="radio" 
+            [name]="uniqueRadioButtonNameImportant" 
+            [formControlName]="uniqueRadioButtonNameImportant" 
+            [id]="uniqueRadioButtonNameImportant + 'True'" 
+            value="true">
+          Important
+        </label>
+        <label [for]="uniqueRadioButtonNameImportant + 'False'">
+          <input 
+            type="radio" 
+            [name]="uniqueRadioButtonNameImportant" 
+            [formControlName]="uniqueRadioButtonNameImportant" 
+            [id]="uniqueRadioButtonNameImportant + 'False'" 
+            value="false">
+          Not Important
+        </label>
+      </div>
     </div>
 
-    <!-- Important Radio Group -->
-    <div>
-      <input 
-        type="radio" 
-        [name]="uniqueRadioButtonNameImportant" 
-        [formControlName]="uniqueRadioButtonNameImportant" 
-        [id]="uniqueRadioButtonNameImportant + 'True'" 
-        value="true">
-      <label [for]="uniqueRadioButtonNameImportant + 'True'">Important</label>
-      <input 
-        type="radio" 
-        [name]="uniqueRadioButtonNameImportant" 
-        [formControlName]="uniqueRadioButtonNameImportant" 
-        [id]="uniqueRadioButtonNameImportant + 'False'" 
-        value="false">
-      <label [for]="uniqueRadioButtonNameImportant + 'False'">Not Important</label>
-    </div>
-
-    <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
-    <button 
-      *ngIf="todoForm.dirty" 
-      class="button-save" 
-      type="submit" 
-      (click)="onTodoUpdateSave()">
-      Save
-    </button>
+    <div class="control-buttons">
+      <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
+      <button 
+        *ngIf="checkToDisplayIfChanges()" 
+        class="button-save" 
+        type="submit" 
+        (click)="onTodoUpdateSave()">
+        Save
+      </button>
+      <button
+        *ngIf="checkToDisplayIfChanges()">
+        Revert
+      </button>
+      <button>
+        Delete
+      </button>
+  </div>
   </div>
 </li>

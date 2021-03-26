@@ -29,6 +29,7 @@ export class TodoComponent implements OnInit {
     this.todoForm = new FormGroup({
       isCompleted: new FormControl(this.todo.isCompleted),
       name: new FormControl(this.todo.name),
+      description: new FormControl(this.todo.description),
       [this.uniqueRadioButtonNameUrgent]: new FormControl(this.todo.isUrgent.toString()),
       [this.uniqueRadioButtonNameImportant]: new FormControl(this.todo.isImportant.toString()),
     });
@@ -58,6 +59,7 @@ export class TodoComponent implements OnInit {
     const newTodoData: Todo = {
       isCompleted: this.todoForm.value.isCompleted,
       name: this.todoForm.value.name,
+      description: this.todoForm.value.description,
       isUrgent: this.todoForm.value[this.uniqueRadioButtonNameUrgent] == "true",
       isImportant: this.todoForm.value[this.uniqueRadioButtonNameImportant] == "true",
     };
@@ -67,4 +69,32 @@ export class TodoComponent implements OnInit {
   toggleDisplayExpanded() {
     this.displayExpandedFields = !this.displayExpandedFields;
   }
+
+  //displayExpandedFields || todoForm.dirty
+  //compares current form values to original todo values 
+  //if different, returns true to allow display
+  checkToDisplayIfChanges(): boolean {
+    //checks first if form was changed
+    //then if true continues w/ a deeper check
+    if (
+      this.todoForm.dirty && 
+      this.todoForm.value.name !== this.todo.name ||
+      this.todoForm.value.description != this.todo.description ||
+      this.todoForm.value[this.uniqueRadioButtonNameUrgent] !== this.todo.isUrgent.toString() ||
+      this.todoForm.value[this.uniqueRadioButtonNameImportant] !== this.todo.isImportant.toString()
+      ) {
+        debugger;
+        this.displayExpandedFields = true;
+        return true;
+      }
+    else {
+      return false;
+    }
+  }
 }
+/*
+this.todoForm.value.name !== this.todo.name ||
+      this.todoForm.value.description !== this.todo.description ||
+      this.todoForm.value.isUrgent !== this.todo.isUrgent ||
+      this.todoForm.value.isImportant !== this.todo.isImportant
+*/
