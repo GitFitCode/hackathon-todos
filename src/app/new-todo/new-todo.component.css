@@ -1,0 +1,19 @@
+:host{
+  position: absolute;
+  left: 34%;
+  top: 30%;
+  z-index: 1;
+  background-color: white;
+  width: 30%;
+  height: 20%;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-buttons{
+  display: flex;
+  justify-content: space-around;
+}

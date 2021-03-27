@@ -8,3 +8,8 @@ grid-view {
   height: 700px;
   margin: 100px auto;
 }
+
+#newTodoBackground{
+  background-color: blue;
+  width: 50px;
+}
