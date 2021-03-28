@@ -31,7 +31,7 @@
             [name]="uniqueRadioButtonNameUrgent" 
             [formControlName]="uniqueRadioButtonNameUrgent"
             [id]="uniqueRadioButtonNameUrgent + 'True'" 
-            value="true">
+            [value]="true">  <!--NOTE: value must be evaluated as JS; otherwise it's a string -->
             Urgent
         </label>
         <label [for]="uniqueRadioButtonNameUrgent + 'False'">
@@ -40,7 +40,7 @@
             [name]="uniqueRadioButtonNameUrgent" 
             [formControlName]="uniqueRadioButtonNameUrgent" 
             [id]="uniqueRadioButtonNameUrgent + 'False'" 
-            value="false">
+            [value]="false">
           Not Urgent
         </label>
       </div>
@@ -52,7 +52,7 @@
             [name]="uniqueRadioButtonNameImportant" 
             [formControlName]="uniqueRadioButtonNameImportant" 
             [id]="uniqueRadioButtonNameImportant + 'True'" 
-            value="true">
+            [value]="true">
           Important
         </label>
         <label [for]="uniqueRadioButtonNameImportant + 'False'">
@@ -61,7 +61,7 @@
             [name]="uniqueRadioButtonNameImportant" 
             [formControlName]="uniqueRadioButtonNameImportant" 
             [id]="uniqueRadioButtonNameImportant + 'False'" 
-            value="false">
+            [value]="false">
           Not Important
         </label>
       </div>

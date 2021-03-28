@@ -30,8 +30,8 @@ export class TodoComponent implements OnInit {
       isCompleted: new FormControl(this.todo.isCompleted),
       name: new FormControl(this.todo.name),
       description: new FormControl(this.todo.description),
-      [this.uniqueRadioButtonNameUrgent]: new FormControl(this.todo.isUrgent.toString()),
-      [this.uniqueRadioButtonNameImportant]: new FormControl(this.todo.isImportant.toString()),
+      [this.uniqueRadioButtonNameUrgent]: new FormControl(this.todo.isUrgent),
+      [this.uniqueRadioButtonNameImportant]: new FormControl(this.todo.isImportant),
     });
   }
 
@@ -53,6 +53,8 @@ export class TodoComponent implements OnInit {
     this.todoForm.markAsPristine();
   }
 
+  //create a new Todo with correct properties from form data
+  //must do this instead of just sending form because of unique radio button names / Form Control Names
   generateTodoDataFromForm(): Todo {
     //fix unique radio button name
     //convert radio button values from strings to booleans 
@@ -60,8 +62,8 @@ export class TodoComponent implements OnInit {
       isCompleted: this.todoForm.value.isCompleted,
       name: this.todoForm.value.name,
       description: this.todoForm.value.description,
-      isUrgent: this.todoForm.value[this.uniqueRadioButtonNameUrgent] == "true",
-      isImportant: this.todoForm.value[this.uniqueRadioButtonNameImportant] == "true",
+      isUrgent: this.todoForm.value[this.uniqueRadioButtonNameUrgent], //== "true" no longer needed since not a string
+      isImportant: this.todoForm.value[this.uniqueRadioButtonNameImportant],
     };
     return newTodoData;
   }
@@ -80,10 +82,9 @@ export class TodoComponent implements OnInit {
       this.todoForm.dirty && 
       this.todoForm.value.name !== this.todo.name ||
       this.todoForm.value.description != this.todo.description ||
-      this.todoForm.value[this.uniqueRadioButtonNameUrgent] !== this.todo.isUrgent.toString() ||
-      this.todoForm.value[this.uniqueRadioButtonNameImportant] !== this.todo.isImportant.toString()
+      this.todoForm.value[this.uniqueRadioButtonNameUrgent] !== this.todo.isUrgent ||
+      this.todoForm.value[this.uniqueRadioButtonNameImportant] !== this.todo.isImportant
       ) {
-        debugger;
         this.displayExpandedFields = true;
         return true;
       }
@@ -92,9 +93,3 @@ export class TodoComponent implements OnInit {
     }
   }
 }
-/*
-this.todoForm.value.name !== this.todo.name ||
-      this.todoForm.value.description !== this.todo.description ||
-      this.todoForm.value.isUrgent !== this.todo.isUrgent ||
-      this.todoForm.value.isImportant !== this.todo.isImportant
-*/

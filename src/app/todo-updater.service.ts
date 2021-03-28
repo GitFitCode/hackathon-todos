@@ -65,21 +65,19 @@ export class TodoUpdaterService {
       //reach out to database and update the todo entry based off UID (unique id)
       //this.http(PATCH, url, newTodoData)
 
-
-      // 2) FOR URGENT/IMPORTANT PROPERTY UPDATES:
+      // 2A) FOR REGULAR UPDATES:
+      //changing these properties will NOT affect card positioning
+      //so update only one card array 
+      if (
+        newTodoData.isUrgent === sourceCardIsUrgent && 
+        newTodoData.isImportant == sourceCardIsImportant) {
+          this.updateSingleCardArray(newTodoData, todoId);
+      }
+      // 2B) FOR URGENT/IMPORTANT PROPERTY UPDATES:
       //changing these properties will move the todo to a new card
       //so update both source and destination card arrays
-
-      /*
-       * Note: if the updates do not change the card then there is no need to change the arrays:
-       * the changes will be recorded in database as above
-       * the new changes remain visible on the form/todo
-       * on reload all todos will be loaded from database
-       * [this strategy will need to be updated if drag & drop is implemented]
-      */
-      if (newTodoData.isUrgent !== sourceCardIsUrgent || newTodoData.isImportant !== sourceCardIsImportant) {
-        this.updateCardArrays(newTodoData, todoId, sourceCardIsUrgent, sourceCardIsImportant);
-        this.emitNewTodoArrays();
+      else {
+          this.updateCardArrays(newTodoData, todoId, sourceCardIsUrgent, sourceCardIsImportant);
       }
   }
 
@@ -92,10 +90,26 @@ export class TodoUpdaterService {
       //delete todo from previous, source array using splice
       const sourceArrayName = this.buildArrayVariableName(sourceCardIsUrgent, sourceCardIsImportant);
       this[sourceArrayName].splice(todoId, 1);
-
+      
       //add todo to new, destination array
       const destinationArrayName = this.buildArrayVariableName(newTodoData.isUrgent, newTodoData.isImportant);
       this[destinationArrayName].push({...newTodoData});
+  }
+
+  //update ONLY source card array bc todo will not move
+  private updateSingleCardArray(
+    newTodoData: Todo, 
+    todoId: number) {
+      const sourceArrayName = this.buildArrayVariableName(newTodoData.isUrgent, newTodoData.isImportant);
+
+      //retrieve the properties' keys for the new todo data
+      const newTodoKeysArray = Object.keys(newTodoData);
+
+      //iterate over old todo data and replace each key with new data
+      //any previous values not updated will remain
+      for (let key of newTodoKeysArray) {
+        this[sourceArrayName][todoId][key] = newTodoData[key];
+      }
   }
 
   //takes the two boolean properties and returns a string corresponding to card array name
