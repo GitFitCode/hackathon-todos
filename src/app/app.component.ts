@@ -11,6 +11,9 @@ export class AppComponent {
 
   onNewTodo(){
     this.displayNewTodo = !this.displayNewTodo;
+  }
 
+  exitNewTodo() {
+    this.displayNewTodo = false;
   }
 }
