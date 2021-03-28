@@ -61,4 +61,11 @@ textarea {
 }
 .control-buttons button {
   margin: 0px 2px;
+  width: 62px;
+  box-sizing: border-box;
+}
+
+.button-delete-confirm {
+  background-color: salmon;
+  border: 1px solid crimson;
 }

@@ -5,6 +5,7 @@
     [todo]="todo" 
     [todoIndex]="todoId"
     [cardName]="cardName"
-    (todoUpdated)="todoUpdated($event, todoId)">
+    (todoUpdated)="todoUpdated($event, todoId)"
+    (todoDeleted)="handleTodoDeleted(todoId)">
   </todo>
 </div>

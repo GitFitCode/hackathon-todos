@@ -11,6 +11,8 @@ import { Todo } from '../todo.interface';
 export class TodoComponent implements OnInit {
   todoForm: FormGroup;
   displayExpandedFields: boolean = false; 
+  unsavedChangesPresent: boolean = false;
+  displayConfirmDelete: boolean = false;
   uniqueRadioButtonNameUrgent: string;
   uniqueRadioButtonNameImportant: string;
 
@@ -18,6 +20,7 @@ export class TodoComponent implements OnInit {
   @Input('todoIndex') todoIndex: number;
   @Input('cardName') cardName: string;  //example: urgentImportant
   @Output('todoUpdated') todoUpdated: EventEmitter<Todo> = new EventEmitter();
+  @Output('todoDeleted') todoDeleted: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -69,7 +72,9 @@ export class TodoComponent implements OnInit {
   }
 
   toggleDisplayExpanded() {
-    this.displayExpandedFields = !this.displayExpandedFields;
+    if (!this.checkToDisplayIfChanges()) {
+      this.displayExpandedFields = !this.displayExpandedFields;
+    }
   }
 
   //displayExpandedFields || todoForm.dirty
@@ -85,11 +90,43 @@ export class TodoComponent implements OnInit {
       this.todoForm.value[this.uniqueRadioButtonNameUrgent] !== this.todo.isUrgent ||
       this.todoForm.value[this.uniqueRadioButtonNameImportant] !== this.todo.isImportant
       ) {
-        this.displayExpandedFields = true;
+        this.unsavedChangesPresent = true;
         return true;
       }
     else {
+      this.unsavedChangesPresent = false;
       return false;
     }
+  }
+
+  //user unchecked/checked checkbox
+  //immediately update, don't confirm
+  onCheckedToggle() {
+    this.onTodoUpdateSave();
+  }
+
+  //user wishes to delete all current changes and return to starting todo data
+  onRevertChanges() {
+    //reset ALL values
+    this.todoForm.setValue({
+      isCompleted: this.todo.isCompleted,
+      name: this.todo.name,
+      description: this.todo.description,
+      [this.uniqueRadioButtonNameUrgent]: this.todo.isUrgent,
+      [this.uniqueRadioButtonNameImportant]: this.todo.isImportant,
+    });
+
+    //set form back to pristine to remove "save" button
+    this.todoForm.markAsPristine();
+  }
+
+  //Step 1
+  onDeleteTodo() {
+    this.displayConfirmDelete = true;
+  }
+
+  //Step 2
+  onConfirmDelete() {
+    this.todoDeleted.emit();
   }
 }

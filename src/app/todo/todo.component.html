@@ -5,22 +5,35 @@
       formControlName="isCompleted" 
       class="input-completed-checkbox"
       type="checkbox" 
-      [checked]="todo.isCompleted">
-    <input formControlName="name" class="input-name" type="text">
+      [checked]="todo.isCompleted"
+      (change)="onCheckedToggle()">
+    <input 
+      formControlName="name" 
+      class="input-name" 
+      type="text"
+      [ngStyle]="{'color': todo.isCompleted ? 'black' : 'whitesmoke'}">
     
     <!-- Expand buttons -->
-    <img *ngIf="!displayExpandedFields" (click)="toggleDisplayExpanded()" src="../../assets/expand-more.png">
-    <img *ngIf="displayExpandedFields" (click)="toggleDisplayExpanded()" src="../../assets/expand-less.png">
+    <img 
+      *ngIf="!displayExpandedFields" 
+      (click)="toggleDisplayExpanded()" 
+      src="../../assets/expand-more.png"
+      [ngStyle]="{'cursor': unsavedChangesPresent ? 'not-allowed' : 'pointer'}">
+    <img 
+      *ngIf="displayExpandedFields" 
+      (click)="toggleDisplayExpanded()" 
+      src="../../assets/expand-less.png"
+      [ngStyle]="{'cursor': unsavedChangesPresent ? 'not-allowed' : 'pointer'}">
   </div>
     
   <!-- Expanded Section -->
-  <div *ngIf="displayExpandedFields || checkToDisplayIfChanges()" class="todo-expandable">
+  <div *ngIf="checkToDisplayIfChanges() || displayExpandedFields" class="todo-expandable">
     <!-- Description Text Field-->
     <textarea 
       formControlName="description"
       rows="4"
-      cols="15">
-    </textarea>
+      cols="15"
+      placeholder="Description:"></textarea>
 
     <div class="radio-container-all">
       <!-- Urgent Radio Group -->
@@ -70,18 +83,28 @@
     <div class="control-buttons">
       <!-- Only appears once user changes todo fields (once changed does not go away until saved currently) -->
       <button 
-        *ngIf="checkToDisplayIfChanges()" 
+        *ngIf="unsavedChangesPresent" 
         class="button-save" 
         type="submit" 
         (click)="onTodoUpdateSave()">
         Save
       </button>
       <button
-        *ngIf="checkToDisplayIfChanges()">
+        *ngIf="unsavedChangesPresent"
+        (click)="onRevertChanges()">
         Revert
       </button>
-      <button>
+
+      <button
+        *ngIf="!displayConfirmDelete"
+        (click)="onDeleteTodo()">
         Delete
+      </button>
+      <button
+        *ngIf="displayConfirmDelete"
+        (click)="onConfirmDelete"
+        class="button-delete-confirm">
+        Confirm
       </button>
   </div>
   </div>

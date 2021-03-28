@@ -65,6 +65,14 @@ export class GridCardComponent implements OnInit, OnDestroy {
     );
   }
 
+  handleTodoDeleted(todoId: number) {
+    this.todoUpdaterService.todoDeleted(
+      todoId,
+      this.isUrgent,
+      this.isImportant
+    );
+  }
+
   ngOnDestroy() {
     if (this.subjectToSubscribeToNameSub) this.todoUpdaterService[this.subjectToSubscribeToName].unsubscribe();
   }
