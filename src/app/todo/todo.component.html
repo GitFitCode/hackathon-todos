@@ -17,12 +17,12 @@
     <img 
       *ngIf="!displayExpandedFields" 
       (click)="toggleDisplayExpanded()" 
-      src="../../assets/expand-more.png"
+      src="../../assets/todo/expand-more.png"
       [ngStyle]="{'cursor': unsavedChangesPresent ? 'not-allowed' : 'pointer'}">
     <img 
       *ngIf="displayExpandedFields" 
       (click)="toggleDisplayExpanded()" 
-      src="../../assets/expand-less.png"
+      src="../../assets/todo/expand-less.png"
       [ngStyle]="{'cursor': unsavedChangesPresent ? 'not-allowed' : 'pointer'}">
   </div>
     

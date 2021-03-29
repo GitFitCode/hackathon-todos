@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'hackathon-todos';
   displayNewTodo: boolean = false;
+  darkModeEnabled: boolean = false;
 
   onNewTodo(){
     this.displayNewTodo = !this.displayNewTodo;

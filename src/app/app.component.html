@@ -12,11 +12,17 @@ Angular Structure:
 </app-root>
 -->
 
-<article>
-  <div id="newTodoBackground">
+<article [ngClass]="{'dark-mode': darkModeEnabled}">
+  <div id="icons-container">
     <img src="../assets/new-todo/create-todo.png" (click)="onNewTodo()">
-  </div>
-  <new-todo *ngIf="displayNewTodo" (exitStarted)="exitNewTodo()"></new-todo>
 
+    <img src="../assets/home/theme-dark.png"  *ngIf="!darkModeEnabled" (click)="darkModeEnabled = true">
+    <img src="../assets/home/theme-light.png" *ngIf="darkModeEnabled" (click)="darkModeEnabled = false">
+  </div>
+
+    
   <grid-view></grid-view>
+
+
+  <new-todo *ngIf="displayNewTodo" (exitStarted)="exitNewTodo()"></new-todo>
 </article>
