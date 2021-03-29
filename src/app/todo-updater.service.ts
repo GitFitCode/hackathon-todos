@@ -59,7 +59,7 @@ export class TodoUpdaterService {
     newTodoData: Todo, 
     todoId: number, 
     sourceCardIsUrgent: boolean, 
-    sourceCardIsImportant: boolean) {
+    sourceCardIsImportant: boolean) { //add delete optional parameter here ... MAYBE
       
       // 1) FOR ALL UPDATES:
       //reach out to database and update the todo entry based off UID (unique id)

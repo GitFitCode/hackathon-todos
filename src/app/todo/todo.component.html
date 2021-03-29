@@ -11,7 +11,7 @@
       formControlName="name" 
       class="input-name" 
       type="text"
-      [ngStyle]="{'color': todo.isCompleted ? 'black' : 'whitesmoke'}">
+      [ngClass]="{'todo-completed': todo.isCompleted}">
     
     <!-- Expand buttons -->
     <img 
