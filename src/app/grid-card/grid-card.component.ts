@@ -29,7 +29,7 @@ export class GridCardComponent implements OnInit, OnDestroy {
     this.cardName = this.generateCardNameFromInputs();
     
     //set path name for card-specific icon
-    this.iconPath = `../../assets/icon-full-${this.cardName}.png`;
+    this.iconPath = `../../assets/card/icon-full-${this.cardName}.png`;
 
     // concatenate specific subject name with 'Subject'
     this.subjectToSubscribeToName = this.cardName + 'Subject';
