@@ -28,32 +28,6 @@ export class TodoUpdaterService {
     this.emitNewTodoArrays();
   }
 
-  //go through mockData array and filter todos to separate arrays
-  private filterTodoDataToCardArrays() {
-    mockData.forEach((todo: Todo) => {
-      if (todo.isUrgent && todo.isImportant)  {
-        //{...todo} creates a new object vs just a reference 
-        this.urgentImportant.push({...todo});
-      }
-      else if (todo.isUrgent) {
-        this.urgent.push({...todo});
-      }
-      else if (todo.isImportant) {
-        this.important.push({...todo});
-      }
-      else {
-        this.neither.push({...todo});
-      }
-    });
-  }
-
-  private emitNewTodoArrays() {
-    this.urgentImportantSubject.next(this.urgentImportant);
-    this.urgentSubject.next(this.urgent);
-    this.importantSubject.next(this.important);
-    this.neitherSubject.next(this.neither);
-  }
-
   //handle any saved changes on a todo
   todoUpdated(
     newTodoData: Todo, 
@@ -79,6 +53,52 @@ export class TodoUpdaterService {
       else {
           this.updateCardArrays(newTodoData, todoId, sourceCardIsUrgent, sourceCardIsImportant);
       }
+  }
+
+  //handle any deleted todo
+  todoDeleted(
+    todoId: number, 
+    sourceCardIsUrgent: boolean,  
+    sourceCardIsImportant: boolean) {
+      //1) Reach out to DB and DELETE based off unique ID
+
+      //2) Delete Todo from source card array
+      const sourceArrayName = this.buildArrayVariableName(sourceCardIsUrgent, sourceCardIsImportant);
+      this[sourceArrayName].splice(todoId, 1);
+  }
+
+  //will use POST 
+  //handle any new todo
+  //todoCreated() {
+  //  
+  //}
+
+  //go through mockData array and filter todos to separate arrays
+  private filterTodoDataToCardArrays() {
+    mockData.forEach((todo: Todo) => {
+      if (todo.isUrgent && todo.isImportant)  {
+        //{...todo} creates a new object vs just a reference 
+        this.urgentImportant.push({...todo});
+      }
+      else if (todo.isUrgent) {
+        this.urgent.push({...todo});
+      }
+      else if (todo.isImportant) {
+        this.important.push({...todo});
+      }
+      else {
+        this.neither.push({...todo});
+      }
+    });
+  }
+
+  //used at constructor to provide correct array to each card
+  //bc these arrays are by reference, no subsequent emits/nexts
+  private emitNewTodoArrays() {
+    this.urgentImportantSubject.next(this.urgentImportant);
+    this.urgentSubject.next(this.urgent);
+    this.importantSubject.next(this.important);
+    this.neitherSubject.next(this.neither);
   }
 
   //update source and destination card arrays
