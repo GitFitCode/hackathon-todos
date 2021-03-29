@@ -1,1 +1,69 @@
-<p>new-todo works!</p>
+<article id="new-todo-screen">
+  <section id="new-todo-popup">
+    <img 
+      src="../../assets/new-todo/exit-button.png" 
+      id="exit-button" 
+      (click)="onExit()">
+
+    <input 
+      type="text" 
+      placeholder="Todo Name"
+      id="input-name">
+    <textarea
+      rows="4"
+      cols="25"
+      id="input-description"
+      placeholder="Todo Description"></textarea>
+  
+    <div id="radio-container-all">
+      <!-- Urgent Radio Group -->
+      <div class="radio-buttons">
+        <label for="isUrgentTrue">
+          <input 
+            type="radio" 
+            name="isUrgent" 
+            id="isUrgentTrue">
+          Urgent
+        </label>
+        <label for="isUrgentFalse">
+          <input 
+            type="radio" 
+            name="isUrgent" 
+            id="isUrgentFalse">
+          Not Urgent
+        </label>
+      </div>
+      <!-- Important Radio Group -->
+      <div class="radio-buttons">
+        <label for="isImportantTrue">
+          <input 
+            type="radio" 
+            name="isImportant" 
+            id="isImportantTrue">
+          Important
+        </label>
+        <label for="isImportantFalse">
+          <input 
+            type="radio" 
+            name="isImportant" 
+            id="isImportantFalse">
+          Not Important
+        </label>
+      </div>
+    </div>
+
+    <div id="complete-create">
+      <label>
+        <input 
+          type="checkbox"
+          id="input-completed-checkbox">
+        Completed?
+      </label>
+      
+      <input type="submit" value="Create" id="create-button">
+    </div>
+    
+    
+
+  </section>
+</article>

@@ -1,0 +1,64 @@
+section {
+  position: absolute;
+  left: 34%;
+  top: 30%;
+  z-index: 10;
+  background-color: white;
+  min-width: 30%;
+  min-height: 20%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+section>* {
+  margin: 4px 0px;
+}
+
+#input-name {
+  margin-top: 10px;
+}
+
+.radio-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column wrap;
+  border: 1px solid black;
+  margin: 1%;
+  width: 150px;
+  
+}
+
+#radio-container-all {
+  display: flex;
+  flex-flow: row no-wrap;
+}
+
+#complete-create {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+#exit-button {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  cursor: pointer;
+}
+
+#create-button {
+  background-color: rgb(3, 82, 109);
+  border-color: rgb(20, 66, 134);
+  color: white;
+  cursor: pointer;
+}
+#create-button:hover {
+  background-color: rgb(4, 149, 197);
+}
+#create-button:focus {
+  border-radius: none !important;
+  outline: none;
+}

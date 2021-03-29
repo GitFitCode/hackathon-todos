@@ -13,5 +13,10 @@ Angular Structure:
 -->
 
 <article>
+  <div id="newTodoBackground">
+    <img src="../assets/new-todo/create-todo.png" (click)="onNewTodo()">
+  </div>
+  <new-todo *ngIf="displayNewTodo" (exitStarted)="exitNewTodo()"></new-todo>
+
   <grid-view></grid-view>
 </article>
