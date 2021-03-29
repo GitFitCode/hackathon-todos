@@ -1,7 +1,21 @@
 <!-- Create the 4 grid cards and pass in their specific urgent/important values -->
 <section>
+  <!-- The 4 background tabs: -->
+  <div class="title-tab vertical-tab urgent">
+    <div>Urgent</div>
+  </div>
+  <div class="title-tab vertical-tab not-urgent">
+    <div>Not Urgent</div>
+  </div>
+  <div class="title-tab horizontal-tab important">
+    <div>Important</div>
+  </div>
+  <div class="title-tab horizontal-tab not-important">
+    <div>Not Important</div>
+  </div>
+
   <grid-card [urgent]="true" [important]="true"></grid-card>
-  <grid-card [urgent]="true" [important]="false"></grid-card>
   <grid-card [urgent]="false" [important]="true"></grid-card>
+  <grid-card [urgent]="true" [important]="false"></grid-card>
   <grid-card [urgent]="false" [important]="false"></grid-card>
 </section>

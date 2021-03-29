@@ -1,0 +1,71 @@
+.todo {
+  margin: 5px;
+  border: 1px solid seagreen;
+  border-radius: 15px;
+  padding: 2px;
+  background-color: darkblue;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-always-visible {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.todo-expandable {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.input-completed-checkbox {
+  border: none;
+  background-color: #597AC8;
+
+}
+.input-name {
+  height: 34px;
+  margin: 0px 4px;
+  border-radius: 10px;
+  border: 1px #8EABF3 solid;
+  background-color: #597AC8;
+  flex-grow: 1;
+  cursor: text !important;
+}
+.input-name:focus {
+  outline: none !important;
+  border: 1px white solid;
+}
+
+textarea {
+  margin: 2px 0px;
+}
+
+.radio-container-all {
+  display: flex;
+  justify-content: space-around;
+}
+.radio-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.control-buttons {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+}
+.control-buttons button {
+  margin: 0px 2px;
+  width: 62px;
+  box-sizing: border-box;
+}
+
+.button-delete-confirm {
+  background-color: salmon;
+  border: 1px solid crimson;
+}

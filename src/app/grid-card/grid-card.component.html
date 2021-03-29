@@ -1,7 +1,11 @@
 <div class="grid-card">
+  <img [src]="iconPath">
   <todo 
     *ngFor="let todo of todos; let todoId = index;" 
     [todo]="todo" 
-    (todoUpdated)="todoUpdated($event, todoId)">
+    [todoIndex]="todoId"
+    [cardName]="cardName"
+    (todoUpdated)="todoUpdated($event, todoId)"
+    (todoDeleted)="handleTodoDeleted(todoId)">
   </todo>
 </div>
