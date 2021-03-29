@@ -7,7 +7,7 @@ export interface Todo {
   isCompleted: boolean;
   isUrgent: boolean;
   isImportant: boolean;
+  description: string;
   //optional:
   dueDate?: Date;
-  description?: string;
 }
