@@ -1,5 +1,5 @@
 <article id="new-todo-screen">
-  <section id="new-todo-popup">
+  <section id="new-todo-popup" [formGroup]="todoForm">
     <img 
       src="../../assets/new-todo/exit-button.png" 
       id="exit-button" 
@@ -7,13 +7,16 @@
 
     <input 
       type="text" 
-      placeholder="Todo Name"
-      id="input-name">
+      [placeholder]="formIsValid() ? 'Todo Name' : 'Name is required'"
+      [ngStyle]="{'border': formIsValid() ? '1px solid darkgray' : '1px solid red'}"
+      id="input-name"
+      formControlName="name">
     <textarea
       rows="4"
       cols="25"
       id="input-description"
-      placeholder="Todo Description"></textarea>
+      placeholder="Todo Description"
+      formControlName="description"></textarea>
   
     <div id="radio-container-all">
       <!-- Urgent Radio Group -->
@@ -21,15 +24,19 @@
         <label for="isUrgentTrue">
           <input 
             type="radio" 
-            name="isUrgent" 
-            id="isUrgentTrue">
+            name="newTodoIsUrgent" 
+            id="isUrgentTrue"
+            [value]="true"
+            formControlName="newTodoIsUrgent">
           Urgent
         </label>
         <label for="isUrgentFalse">
           <input 
             type="radio" 
-            name="isUrgent" 
-            id="isUrgentFalse">
+            name="newTodoIsUrgent" 
+            id="isUrgentFalse"
+            [value]="false"
+            formControlName="newTodoIsUrgent">
           Not Urgent
         </label>
       </div>
@@ -38,15 +45,19 @@
         <label for="isImportantTrue">
           <input 
             type="radio" 
-            name="isImportant" 
-            id="isImportantTrue">
+            name="newTodoIsImportant" 
+            id="isImportantTrue"
+            [value]="true"
+            formControlName="newTodoIsImportant">
           Important
         </label>
         <label for="isImportantFalse">
           <input 
             type="radio" 
-            name="isImportant" 
-            id="isImportantFalse">
+            name="newTodoIsImportant" 
+            id="isImportantFalse"
+            [value]="false"
+            formControlName="newTodoIsImportant">
           Not Important
         </label>
       </div>
@@ -56,14 +67,17 @@
       <label>
         <input 
           type="checkbox"
-          id="input-completed-checkbox">
+          id="input-completed-checkbox"
+          formControlName="isCompleted">
         Completed?
       </label>
       
-      <input type="submit" value="Create" id="create-button">
+      <input 
+        type="submit" 
+        value="Create" 
+        id="create-button"
+        (click)="onFormSubmit()"
+        [ngStyle]="{'cursor': todoForm.valid ? 'auto' : 'not-allowed'}">
     </div>
-    
-    
-
   </section>
 </article>
