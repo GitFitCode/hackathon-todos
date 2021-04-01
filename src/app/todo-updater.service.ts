@@ -67,11 +67,14 @@ export class TodoUpdaterService {
       this[sourceArrayName].splice(todoId, 1);
   }
 
-  //will use POST 
   //handle any new todo
-  //todoCreated() {
-  //  
-  //}
+  todoCreated(newTodoData: Todo) {
+    //1) use a POST request to add to DB
+
+    //2) Push new todo to correct card array
+    const destinationArrayName = this.buildArrayVariableName(newTodoData.isUrgent, newTodoData.isImportant);
+    this[destinationArrayName].push({...newTodoData});
+  }
 
   //go through mockData array and filter todos to separate arrays
   private filterTodoDataToCardArrays() {
