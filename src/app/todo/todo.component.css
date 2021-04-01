@@ -88,10 +88,8 @@ textarea {
   color: darkred;
 }
 
-/* 
-Card-Specific Styling 
-where opacity will change for each card
-*/
+/* Card-Specific Styling */
+
 /* Overall Todo */
 .urgentImportant :host .todo {
   background-color: rgba(196,196,196,0.2);
