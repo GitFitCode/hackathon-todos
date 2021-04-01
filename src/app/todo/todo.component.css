@@ -1,9 +1,7 @@
 .todo {
   margin: 5px;
-  border: 1px solid seagreen;
-  border-radius: 15px;
   padding: 2px;
-  background-color: darkblue;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
 }
@@ -20,16 +18,22 @@
 }
 
 .input-completed-checkbox {
-  border: none;
-  background-color: #597AC8;
-
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: rgb(89,122,200);
 }
+.input-completed-checkbox:checked {
+  background-image: url('../../assets/todo/checkmark.png');
+  background-size: contain;
+}
+
 .input-name {
   height: 34px;
   margin: 0px 4px;
+  border: 1px solid rgb(143,172,241);
   border-radius: 10px;
-  border: 1px #8EABF3 solid;
-  background-color: #597AC8;
+  background-color: rgb(91,124,198);
   flex-grow: 1;
   cursor: text !important;
   color: whitesmoke;
@@ -40,7 +44,8 @@
 }
 .todo-completed {
   text-decoration: line-through;
-  color: darkblue;
+  color: rgba(189,189,189,0.78);
+  background-color: rgba(130,130,130,0.59);
 }
 
 textarea {
@@ -56,6 +61,12 @@ textarea {
   display: flex;
   flex-direction: column;
 }
+
+.expand-div {
+  width: 36px;
+  height: 36px;
+}
+
 
 .control-buttons {
   width: 100%;
@@ -75,4 +86,22 @@ textarea {
   border: 1px solid crimson;
   background-color: lightcoral;
   color: darkred;
+}
+
+/* 
+Card-Specific Styling 
+where opacity will change for each card
+*/
+/* Overall Todo */
+.urgentImportant :host .todo {
+  background-color: rgba(196,196,196,0.2);
+}
+.urgent :host .todo {
+  background-color: rgba(196,196,196,0.4);
+}
+.important :host .todo {
+  background-color: rgba(196,196,196,0.2);
+}
+.neither :host .todo {
+  background-color: rgba(196,196,196,0.4);
 }
