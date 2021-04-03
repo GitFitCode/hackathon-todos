@@ -65,6 +65,13 @@ export class GridCardComponent implements OnInit, OnDestroy {
     );
   }
 
+  todoCompleted(newTodoData: Todo, todoId: number) {
+    this.todoUpdaterService.todoCompleted(
+      newTodoData,
+      todoId
+    );
+  }
+
   handleTodoDeleted(todoId: number) {
     this.todoUpdaterService.todoDeleted(
       todoId,

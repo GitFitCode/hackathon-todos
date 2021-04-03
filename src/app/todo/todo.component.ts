@@ -20,6 +20,7 @@ export class TodoComponent implements OnInit {
   @Input('todoIndex') todoIndex: number;
   @Input('cardName') cardName: string;  //example: urgentImportant
   @Output('todoUpdated') todoUpdated: EventEmitter<Todo> = new EventEmitter();
+  @Output('todoCompleted') todoCompleted: EventEmitter<Todo> = new EventEmitter();
   @Output('todoDeleted') todoDeleted: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
@@ -105,7 +106,13 @@ export class TodoComponent implements OnInit {
   //user unchecked/checked checkbox
   //immediately update, don't confirm
   onCheckedToggle() {
-    this.onTodoUpdateSave();
+    //emit new todo values to parent grid-card to be passed to service
+    this.todoCompleted.emit(
+      this.generateTodoDataFromForm()
+    );
+
+    //set form back to pristine to remove "save" button
+    this.todoForm.markAsPristine();
   }
 
   //user wishes to delete all current changes and return to starting todo data

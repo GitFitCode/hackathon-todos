@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import mockData from './todo-mock-data';
 import { Todo } from './todo.interface';
+import { SimpleDateService } from './simple-date.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class TodoUpdaterService {
   neitherSubject = new BehaviorSubject<Todo[]>([]);
 
   //grab todos (currently from mockData) and then distribute to cards
-  constructor () {
+  constructor (private simpletDateService: SimpleDateService) {
     this.filterTodoDataToCardArrays();
     this.emitNewTodoArrays();
   }
@@ -55,10 +56,27 @@ export class TodoUpdaterService {
       }
   }
 
+  //specifically for when todo is completed
+  todoCompleted(newTodoData: Todo, todoId: number, ) {
+    let completedDate;
+    if (newTodoData.isCompleted) {
+      completedDate = this.simpletDateService.getTimeSeconds();
+      newTodoData.completedDate = completedDate;
+    }
+    else newTodoData.completedDate = 0;
+
+    //1) reach out to database and update the todo entry's date based off UID (unique id)
+    //this.http(PATCH, url, newTodoData)
+
+    //2) changing completed property only affects source card
+    this.updateSingleCardArray(newTodoData, todoId);
+  }
+
+  //SHOULD TODO BE DELETED OR STORED FOR GRAPHS AND MERELY FILTERED?
   //handle any deleted todo
   todoDeleted(
-    todoId: number, 
-    sourceCardIsUrgent: boolean,  
+    todoId: number,
+    sourceCardIsUrgent: boolean,
     sourceCardIsImportant: boolean) {
       //1) Reach out to DB and DELETE based off unique ID
 
@@ -69,11 +87,20 @@ export class TodoUpdaterService {
 
   //handle any new todo
   todoCreated(newTodoData: Todo) {
+    //set creation date and (optionally) completed date
+    const creationDate = this.simpletDateService.getTimeSeconds();
+    let completedDate = 0;
+    if (newTodoData.isCompleted) completedDate = creationDate;
+
     //1) use a POST request to add to DB
 
     //2) Push new todo to correct card array
     const destinationArrayName = this.buildArrayVariableName(newTodoData.isUrgent, newTodoData.isImportant);
-    this[destinationArrayName].push({...newTodoData});
+    this[destinationArrayName].push({
+      ...newTodoData,
+      createdDate: creationDate,
+      completedDate: completedDate
+    });
   }
 
   //go through mockData array and filter todos to separate arrays
@@ -130,6 +157,7 @@ export class TodoUpdaterService {
 
       //iterate over old todo data and replace each key with new data
       //any previous values not updated will remain
+      //any new properties will be added
       for (let key of newTodoKeysArray) {
         this[sourceArrayName][todoId][key] = newTodoData[key];
       }
