@@ -58,19 +58,19 @@ section {
   top: 50%;
 }
 
-.urgent {
+.title-tab.urgent {
   left: 5%;
   background-color: rgba(0, 128, 128, .8);
 }
-.not-urgent {
+.title-tab.not-urgent {
   right: 5%;
   background-color: rgba(0, 128, 128, .6);
 }
-.important {
+.title-tab.important {
   top: 7%;
   background-color: rgba(127, 255, 212, .8);
 }
-.not-important {
+.title-tab.not-important {
   bottom: 7%;
   background-color: rgba(127, 255, 212, .6);
 }

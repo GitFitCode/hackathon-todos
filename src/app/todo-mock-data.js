@@ -35,49 +35,57 @@ const mockData = [
     "name": "fill out study planner",
     "isUrgent": true,
     "isImportant": false,
-    "isCompleted": true
+    "isCompleted": true,
+    "description": ""
   },
   {
     "name": "talk to Erica at lunch for robotics",
     "isUrgent": false,
     "isImportant": false,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": ""
   },
   {
     "name": "English essay on ATOTC",
     "isUrgent": false,
     "isImportant": true,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": ""
   },
   {
     "name": "proofread and edit essay",
     "isUrgent": false,
     "isImportant": true,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": ""
   },
   {
     "name": "AP Chemistry insulating material scavenge",
     "isUrgent": false,
     "isImportant": false,
-    "isCompleted": true
+    "isCompleted": true,
+    "description": ""
   },
   {
     "name": "Study potential vs kinetic energy",
     "isUrgent": false,
     "isImportant": false,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": ""
   },
   {
     "name": "complete linked list coding assignment",
     "isUrgent": true,
     "isImportant": false,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": ""
   },
   {
     "name": "Study for Friday quiz",
     "isUrgent": false,
     "isImportant": true,
-    "isCompleted": false
+    "isCompleted": false,
+    "description": ""
   },
 ];
 

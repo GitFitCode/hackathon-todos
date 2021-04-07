@@ -1,15 +1,28 @@
 article {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 100px 0px;
+  position: relative;
+}
+.dark-mode {
+  background-color: #333333;
 }
 
 grid-view {
   width: 1000px;
   height: 700px;
-  margin: 100px auto;
+  margin: 0 auto;
 }
 
-#newTodoBackground{
+#icons-container {
+  width: 100px;
+  height: 50px;
   background-color: blue;
-  width: 50px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#icons-container img {
+  margin: 0px 2px;
 }

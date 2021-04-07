@@ -75,6 +75,9 @@ export class TodoComponent implements OnInit {
     if (!this.checkToDisplayIfChanges()) {
       this.displayExpandedFields = !this.displayExpandedFields;
     }
+
+    //reset delete button status
+    this.displayConfirmDelete = false;
   }
 
   //displayExpandedFields || todoForm.dirty
@@ -107,6 +110,9 @@ export class TodoComponent implements OnInit {
 
   //user wishes to delete all current changes and return to starting todo data
   onRevertChanges() {
+    //reset delete button status
+    this.displayConfirmDelete = false;
+
     //reset ALL values
     this.todoForm.setValue({
       isCompleted: this.todo.isCompleted,
@@ -120,12 +126,12 @@ export class TodoComponent implements OnInit {
     this.todoForm.markAsPristine();
   }
 
-  //Step 1
+  //Delete Todo Step 1
   onDeleteTodo() {
     this.displayConfirmDelete = true;
   }
 
-  //Step 2
+  //Delete Todo Step 2
   onConfirmDelete() {
     this.todoDeleted.emit();
   }

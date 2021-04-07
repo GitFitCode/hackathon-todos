@@ -14,8 +14,8 @@
     <div>Not Important</div>
   </div>
 
-  <grid-card [urgent]="true" [important]="true"></grid-card>
-  <grid-card [urgent]="false" [important]="true"></grid-card>
-  <grid-card [urgent]="true" [important]="false"></grid-card>
-  <grid-card [urgent]="false" [important]="false"></grid-card>
+  <grid-card [urgent]="true" [important]="true" class="urgentImportant"></grid-card>
+  <grid-card [urgent]="false" [important]="true" class="important"></grid-card>
+  <grid-card [urgent]="true" [important]="false" class="urgent"></grid-card>
+  <grid-card [urgent]="false" [important]="false" class="neither"></grid-card>
 </section>

@@ -2,7 +2,6 @@
   height: 100%;
   min-width: 0;
   overflow: scroll;
-  border: 1px solid #333333;
   border-radius: 36px;
   padding: 1%;
   background-color: rgb(135,170,245);
@@ -12,4 +11,19 @@
 
 img {
   margin: 3px 3px 3px 15px;
+}
+
+/* Card-Specific Styling */
+/* eventually would be .blue :host.urgent {}*/
+:host.urgentImportant {
+  background-color: rgb(30,63,137);
+}
+:host.urgent {
+  background-color: rgb(135,170,245);
+}
+:host.important {
+  background-color: rgb(64,98,172);
+}
+:host.neither {
+  background-color: rgb(109,145,236);
 }
