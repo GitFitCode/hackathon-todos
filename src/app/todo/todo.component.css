@@ -37,6 +37,7 @@
   flex-grow: 1;
   cursor: text !important;
   color: whitesmoke;
+  font-size: 18px;
 }
 .input-name:focus {
   outline: none !important;
