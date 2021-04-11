@@ -8,6 +8,7 @@ article {
   min-width: 100vw;
   min-height: 100vh;
   padding: 100px 0px;
+  background-color: rgb(250, 250, 250);
   box-sizing: border-box;
   position: relative;
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { NewTodoService } from './new-todo.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,16 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hackathon-todos';
-  displayNewTodo: boolean = false;
   darkModeEnabled: boolean = false;
   responsiveViewEnabled: boolean = true;
 
-  onNewTodo(){
-    this.displayNewTodo = !this.displayNewTodo;
-  }
+  constructor(private newTodoService: NewTodoService) {}
 
-  exitNewTodo() {
-    this.displayNewTodo = false;
+  onNewTodo(){
+    this.newTodoService.onNewTodo();
   }
 
   styleGridView() {

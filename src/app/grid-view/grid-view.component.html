@@ -1,7 +1,6 @@
 <!-- Create the 4 grid cards and pass in their specific urgent/important values -->
 <section>
-  <!-- The 4 background tabs: -->
-
+  <new-todo *ngIf="displayNewTodo" (exitStarted)="exitNewTodo()"></new-todo>
 
   <div class="card-container">
     <grid-card [urgent]="true" [important]="true" class="urgentImportant"></grid-card>
