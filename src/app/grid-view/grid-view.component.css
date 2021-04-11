@@ -22,8 +22,8 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  column-gap: 23px;
-  row-gap: 23px;
+  column-gap: 2%;
+  row-gap: 2%;
   justify-content: center;
   align-items: center;
 }
@@ -37,13 +37,13 @@ section {
   z-index: -10;
 }
 .vertical-tab {
-  height: 860px; 
-  width: 470px;
+  width: 87%;
+  height: 204%; 
   top: 0%;
 }
 .horizontal-tab {
-  width: 1102px;
-  height: 362px;
+  width: 204%;
+  height: 86%; 
   left: 0%;
 }
 /* Title Tab Text */
@@ -56,13 +56,13 @@ section {
   width: 100%;
   text-align: center;
   position: absolute;
-  top: 11px;
+  top: 5px;
 }
 .horizontal-tab div {
-  width: 362px;
+  width: 86%;
   position: absolute;
-  left: 35px;
-  top: 341px;
+  left: 20px;
+  top: 178%;
   transform-origin: 0px 20px;
   transform: rotate(-90deg);
   text-align: center;
@@ -90,6 +90,7 @@ section {
     rgba(239, 239, 239, 0.1) 163.99%);
 }
 
+/* Ratio w540  h421 */
 .card-container {
   width: 100%;
   height: 100%;

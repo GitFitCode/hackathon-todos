@@ -20,10 +20,13 @@ Angular Structure:
 
     <img src="../assets/home/theme-dark.png"  *ngIf="!darkModeEnabled" (click)="darkModeEnabled = true">
     <img src="../assets/home/theme-light.png" *ngIf="darkModeEnabled" (click)="darkModeEnabled = false">
+
+    <img src="../assets/home/panorama-black.png" *ngIf="responsiveViewEnabled" (click)="responsiveViewEnabled = false" title="Fixed Size">
+    <img src="../assets/home/panorama-white.png" *ngIf="!responsiveViewEnabled" (click)="responsiveViewEnabled = true" title="Responsive Size">
   </div>
 
     
-  <grid-view></grid-view>
+  <grid-view [ngStyle]="styleGridView()"></grid-view>
 
 
   <new-todo *ngIf="displayNewTodo" (exitStarted)="exitNewTodo()"></new-todo>
