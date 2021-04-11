@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { TodoUpdaterService } from '../todo-updater.service';
 import { Todo } from '../todo.interface';
+import { NewTodoService } from '../new-todo.service';
 
 @Component({
   selector: 'grid-card',
@@ -18,11 +19,14 @@ export class GridCardComponent implements OnInit, OnDestroy {
   iconPath: string;
 
   subjectToSubscribeToNameSub: Subscription;
+  displayScrollbarsSub: Subscription;
   
   @Input('urgent') isUrgent;
   @Input('important') isImportant;
 
-  constructor(private todoUpdaterService: TodoUpdaterService) { }
+  @HostBinding('style.overflow-y') scroll;
+
+  constructor(private todoUpdaterService: TodoUpdaterService, private newTodoService: NewTodoService) { }
 
   ngOnInit(): void {
     //Determine which subject in service to subscribe to based on input values
@@ -35,6 +39,11 @@ export class GridCardComponent implements OnInit, OnDestroy {
     this.subjectToSubscribeToName = this.cardName + 'Subject';
     this.subjectToSubscribeToNameSub = this.todoUpdaterService[this.subjectToSubscribeToName].subscribe((newTodoArray: Todo[]) => {
       this.todos = newTodoArray;
+    });
+
+    //set up scrollbars from service
+    this.displayScrollbarsSub = this.newTodoService.displayScrollbarsSubject.subscribe(displayScrollbars => {
+      displayScrollbars ? this.scroll = 'auto' : this.scroll = 'hidden';
     });
   }
 
@@ -75,5 +84,6 @@ export class GridCardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.subjectToSubscribeToNameSub) this.todoUpdaterService[this.subjectToSubscribeToName].unsubscribe();
+    if (this.displayScrollbarsSub) this.displayScrollbarsSub.unsubscribe();
   }
 }

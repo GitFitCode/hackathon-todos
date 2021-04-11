@@ -27,6 +27,9 @@
   background-image: url('../../assets/todo/checkmark.png');
   background-size: contain;
 }
+.input-completed-checkbox:focus {
+  outline: none;
+}
 
 .input-name {
   height: 34px;

@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'hackathon-todos';
   darkModeEnabled: boolean = false;
   responsiveViewEnabled: boolean = true;
+  scrollBarsEnabled: boolean = true;
 
   constructor(private newTodoService: NewTodoService) {}
 
@@ -18,10 +19,13 @@ export class AppComponent {
     this.newTodoService.onNewTodo();
   }
 
-  styleGridView() {
-    //{'width': responsiveViewEnabled ? 'calc(128vh - 20px)' : '1102px'; 
-    //'height': responsiveViewEnabled ? 'calc(100vh - 20px)' : '860px'}
+  scrollBarsToggle() {
+    this.scrollBarsEnabled = !this.scrollBarsEnabled;
+    this.newTodoService.onToggleScrollbars();
+  }
 
+  //style either responsively or default size
+  styleGridView() {
     if (this.responsiveViewEnabled) {
       return {width: 'calc(128vh - 20px)', height: 'calc(100vh - 20px)'};
     }

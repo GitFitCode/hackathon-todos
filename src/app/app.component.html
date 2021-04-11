@@ -23,6 +23,9 @@ Angular Structure:
 
     <img src="../assets/home/panorama-black.png" *ngIf="responsiveViewEnabled" (click)="responsiveViewEnabled = false" title="Fixed Size">
     <img src="../assets/home/panorama-white.png" *ngIf="!responsiveViewEnabled" (click)="responsiveViewEnabled = true" title="Responsive Size">
+
+    <img src="../assets/home/no-scroll.png" *ngIf="scrollBarsEnabled" (click)="scrollBarsToggle()" title="Remove Scrollbars">
+    <img src="../assets/home/scroll.png" *ngIf="!scrollBarsEnabled" (click)="scrollBarsToggle()" title="Enable Scrollbars">
   </div>
 
     
