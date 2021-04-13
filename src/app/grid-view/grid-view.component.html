@@ -1,0 +1,29 @@
+<!-- Create the 4 grid cards and pass in their specific urgent/important values -->
+<section>
+  <new-todo *ngIf="displayNewTodo" (exitStarted)="exitNewTodo()"></new-todo>
+
+  <div class="card-container">
+    <grid-card [urgent]="true" [important]="true" class="urgentImportant"></grid-card>
+    <div class="title-tab vertical-tab urgent">
+      <div>Urgent</div>
+    </div>
+    <div class="title-tab horizontal-tab important">
+      <div>Important</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <grid-card [urgent]="false" [important]="true" class="important"></grid-card>
+    <div class="title-tab vertical-tab not-urgent">
+      <div>Not Urgent</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <grid-card [urgent]="true" [important]="false" class="urgent"></grid-card>
+    <div class="title-tab horizontal-tab not-important">
+      <div>Not Important</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <grid-card [urgent]="false" [important]="false" class="neither"></grid-card>
+  </div>
+</section>

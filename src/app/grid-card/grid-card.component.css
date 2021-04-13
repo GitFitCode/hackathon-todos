@@ -1,0 +1,31 @@
+:host {
+  width: 87%;
+  height: 86%;
+  border-radius: 36px;
+  padding: 1%;
+  background-color: rgb(135,170,245);
+  box-sizing: border-box;
+  display: block;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow-x: hidden;
+}
+
+img {
+  margin: 3px 3px 3px 15px;
+}
+
+/* Card-Specific Styling */
+/* eventually would be .blue :host.urgent {}*/
+:host.urgentImportant {
+  background-color: rgb(30,63,137);
+  
+}
+:host.urgent {
+  background-color: rgb(135,170,245);
+}
+:host.important {
+  background-color: rgb(64,98,172);
+}
+:host.neither {
+  background-color: rgb(109,145,236);
+}

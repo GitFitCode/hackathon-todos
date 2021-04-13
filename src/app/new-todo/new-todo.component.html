@@ -1,0 +1,81 @@
+<section id="new-todo-popup" [formGroup]="todoForm">
+  <img 
+    src="../../assets/new-todo/exit-button.png" 
+    id="exit-button" 
+    (click)="onExit()">
+
+  <input 
+    type="text" 
+    [placeholder]="formIsValid() ? 'Todo Name' : 'Name is required'"
+    [ngStyle]="{'border': formIsValid() ? 'none' : '1px solid red'}"
+    id="input-name"
+    formControlName="name">
+  <textarea
+    rows="4"
+    cols="25"
+    id="input-description"
+    placeholder="Todo Description"
+    formControlName="description"></textarea>
+
+  <div id="radio-container-all">
+    <!-- Urgent Radio Group -->
+    <div class="radio-buttons">
+      <label for="isUrgentTrue">
+        <input 
+          type="radio" 
+          name="newTodoIsUrgent" 
+          id="isUrgentTrue"
+          [value]="true"
+          formControlName="newTodoIsUrgent">
+        Urgent
+      </label>
+      <label for="isUrgentFalse">
+        <input 
+          type="radio" 
+          name="newTodoIsUrgent" 
+          id="isUrgentFalse"
+          [value]="false"
+          formControlName="newTodoIsUrgent">
+        Not Urgent
+      </label>
+    </div>
+    <!-- Important Radio Group -->
+    <div class="radio-buttons">
+      <label for="isImportantTrue">
+        <input 
+          type="radio" 
+          name="newTodoIsImportant" 
+          id="isImportantTrue"
+          [value]="true"
+          formControlName="newTodoIsImportant">
+        Important
+      </label>
+      <label for="isImportantFalse">
+        <input 
+          type="radio" 
+          name="newTodoIsImportant" 
+          id="isImportantFalse"
+          [value]="false"
+          formControlName="newTodoIsImportant">
+        Not Important
+      </label>
+    </div>
+  </div>
+
+  <div id="complete-create">
+    <label id="input-completed">
+      <input 
+        type="checkbox"
+        id="input-completed-checkbox"
+        formControlName="isCompleted">
+      Completed?
+    </label>
+    
+    <input 
+      type="submit" 
+      value="Create" 
+      id="create-button"
+      (click)="onFormSubmit()"
+      [ngStyle]="{'cursor': todoForm.valid ? 'auto' : 'not-allowed'}">
+  </div>
+</section>

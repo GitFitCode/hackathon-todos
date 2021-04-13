@@ -116,6 +116,12 @@
               "devServerTarget": "hackathon-todos:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/GitFitCode/hackathon-todos/"
+          }
         }
       }
     }

@@ -1,0 +1,138 @@
+:host {
+  width: 83.6%;
+  height: 64%;
+  position: absolute;
+  left: 8%;
+  top: 18%;
+  z-index: 10;
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  background: #F2F2F2;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+section>* {
+  margin: 4px 0px;
+}
+
+#input-name {
+  margin-top: 10px;
+
+  width: 69%;
+  height: 50px;
+  padding: 0 10px;
+  appearance: none;
+  border: none;
+  border-radius: 30px;
+  font-size: 25px;
+  line-height: 40px;
+  color: rgb(129, 128, 128);
+  box-shadow: 0px 2px 3px rgba(128, 128, 128, .7) inset;
+}
+#input-description {
+  width: 69%;
+  height: 31%;
+  padding: 10px;
+  appearance: none;
+  border: none;
+  border-radius: 30px;
+  font-size: 25px;
+  line-height: 40px;
+  color: rgb(129, 128, 128);
+  resize: vertical;
+  box-shadow: 0px 2px 3px rgba(128, 128, 128, .7) inset;
+}
+#input-name:focus, #input-description:focus {
+  outline: none;
+}
+
+/* Urgent / Important Buttons */
+#radio-container-all {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.radio-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column wrap;
+  margin: 1%;
+  width: 224px;
+  height: 134px;
+  background: rgba(196, 196, 196, 0.53);
+  border-radius: 30px;
+  font-size: 25px;
+  line-height: 34px;
+}
+
+/* Form Control Buttons */
+#complete-create {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+#input-completed {
+  min-width: 155px;
+  height: 42px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: rgb(143, 172, 241);
+  font-size: 25px;
+  line-height: 34px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#input-completed-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: rgb(89,122,200);
+}
+#input-completed-checkbox:checked {
+  background-image: url('../../assets/todo/checkmark.png');
+  background-size: contain;
+}
+#input-completed-checkbox:focus {
+  outline: none;
+}
+
+
+#create-button {
+  width: 155px;
+  height: 42px;
+  border: none;
+  border-radius: 30px;
+  background-color: rgb(143, 172, 241);
+  font-size: 25px;
+  line-height: 34px;
+  color: white;
+  appearance: none;
+  cursor: pointer;
+}
+#create-button:hover {
+  background-color: rgba(84,109,166,1);
+}
+#create-button:focus {
+  border-radius: none !important;
+  outline: none;
+}
+
+#exit-button {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  cursor: pointer;
+}
