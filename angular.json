@@ -120,7 +120,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/hackathon-todos/"
+            "baseHref": "/GitFitCode/hackathon-todos/"
           }
         }
       }
